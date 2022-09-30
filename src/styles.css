@@ -1,0 +1,355 @@
+:root {
+  --main-color: rgb(9 10 12);
+  --color-2: #ebebeb;
+  --color-3: #adb5bd;
+  --color-4: #e63946;
+  --color-5: #a00c1e;
+  --color-6: #212529;
+  --color-white: #fff;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--main-color) !important;
+  color: var(--color-2);
+}
+
+.ant-layout {
+  background: var(--color-6);
+}
+
+/*********************** HEADER ***********************/
+
+.header-img {
+  margin: 5rem 1rem 2rem 1rem;
+
+  background: url(./assets/camera-top1.jpg);
+  height: 60vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 1rem;
+}
+
+.ant-layout-header {
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  height: 64px;
+}
+@media (min-width: 765px) { 
+  .ant-layout-header {
+    position: fixed;
+    z-index: 999;
+    width: calc(100% - 200px);
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ 
+}
+@media (min-width: 765px) {
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+header.ant-layout-header {
+    /* background-color: var(--main-color);
+    background: rgba(2, 2, 2, 0.856);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    border-bottom: 1px solid rgba(66, 63, 63, 0.5);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px); */
+    background-color: var(--main-color);
+}
+.logo img {
+  height: 2.2rem;
+}
+@media (min-width: 375px) {
+  .logo img {
+    height: 3rem;
+  }
+}
+
+.header .ant-anchor-wrapper {
+  background: none;
+}
+
+.header .ant-anchor {
+  display: flex;
+}
+
+.header .ant-anchor-ink {
+  display: none;
+}
+
+.header .ant-anchor-link {
+  padding: 0 20px;
+  line-height: 1.4;
+  position: relative;
+}
+.ant-anchor-link-active > .ant-anchor-link-title {
+  color: var(--color-3);
+}
+.header .ant-anchor-link:before,
+.header .ant-anchor-link:after {
+  content: "";
+  background: var(--color-2);
+  width: 1px;
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 30%;
+  opacity: 0;
+  transition: all 0.3s linear;
+}
+
+.header .ant-anchor-link:after {
+  left: auto;
+  right: 30%;
+}
+
+.header .ant-anchor-link.ant-anchor-link-active:before,
+.header .ant-anchor-link:hover:before {
+  left: 5%;
+  opacity: 1;
+}
+
+.header .ant-anchor-link.ant-anchor-link-active:after,
+.header .ant-anchor-link:hover:after {
+  right: 5%;
+  opacity: 1;
+}
+.ant-anchor-link-title {
+  color: var(--color-2);
+  font-size: 1rem;
+  font-weight: bold;
+}
+.ant-anchor-link-title:hover {
+  color: var(--color-3);
+}
+/* ant menu */
+.header .ant-menu {
+  border: 0;
+  background: var(--color-2);
+}
+
+.header .ant-menu .ant-menu-item {
+  position: relative;
+  color: #333;
+}
+
+.header .ant-menu .ant-menu-item:before,
+.header .ant-menu .ant-menu-item:after {
+  content: "";
+  width: 1px;
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 30%;
+  opacity: 0;
+  transition: all 0.3s linear;
+}
+
+.header .ant-menu .ant-menu-item:after {
+  left: auto;
+  right: 30%;
+}
+
+.header .ant-menu .ant-menu-item,
+.header .ant-menu .ant-menu-item-selected {
+  border: 0 !important;
+}
+
+.header .ant-menu .ant-menu-item-selected:before,
+.header .ant-menu .ant-menu-item:hover:before {
+  left: 5%;
+  opacity: 1;
+}
+
+.header .ant-menu .ant-menu-item-selected:after,
+.header .ant-menu .ant-menu-item:hover:after {
+  right: 5%;
+  opacity: 1;
+}
+
+.ant-anchor-link-title {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 18px;
+}
+
+@media (min-width: 765px) {
+  .ant-anchor-link-title {
+    margin-top: 0rem;
+    font-size: 16px;
+  }
+}
+.ant-drawer-title {
+  color: var(--color-white);
+  text-transform: uppercase;
+  text-align: end;
+  font-size: 24px;
+}
+.ant-drawer-content {
+  background-color: var(--main-color);
+}
+.anticon svg {
+  color: #fff;
+} 
+
+/************** RESPONSIVE **************/
+
+.mobileVisible {
+  display: block;
+}
+.mobileHidden {
+  display: none;
+}
+
+@media (min-width: 767px) {
+  .mobileVisible {
+    display: none;
+  }
+  .mobileHidden {
+    display: block;
+  }
+}
+.container-fluid {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 15px;
+    overflow: hidden;
+  }
+    
+ /*LOGIN  */
+
+.container-auth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%; 
+}
+.hero-login {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(./assets/joven-toma-foto-camara-cine-antigua_169016-21372.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-size: cover;
+}
+.last-container {
+  background-color: rgba(255, 255, 255, 0.76);
+  padding: 2rem;
+
+}
+.last-container h2 {
+  text-align: center;
+  text-transform: uppercase;
+}
+.img-login {
+  height: 4rem;
+  display: flex;
+  justify-content: flex-end;
+}
+.img-login img {
+  height: 4rem;
+}
+
+.ant-form-item-explain-error {
+  color: var(--color-5);
+}
+.dr {
+  position: absolute;
+  left: auto;
+  right: 0;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+  bottom: 0;
+  z-index: 1;
+}
+.ant-typography kbd{
+  color: var(--color-2);
+  font-size: 16px;
+}
+
+/* REGISTER */
+.hero-register {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(./assets/camera-hand.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-size: cover;
+}
+/* BUTTON */
+
+.btn-button-primary {
+  margin-left: 1rem;
+  font-weight: 600;
+  border-radius: 5%;
+  color: var(--color-2);
+  border-color: var(--color-5);
+  background: var(--color-5);
+  text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
+  box-shadow: 0 2px 0 rgb(0 0 0 / 5%); 
+}
+.btn-button-primary:hover,
+.btn-button-primary:focus {
+  color: var(--color-2);
+  border-color: var(--color-5);
+  background: var(--color-5);
+}
+
+/* SIDEBAR */
+
+.ant-list-item-meta-avatar img {
+  height: 2rem;
+}
+
+.ant-layout-sider {
+  background: var(--color-6);
+}
+.color-side {
+  background: var(--color-6);
+}
+.navLink-active {
+  background-color: var(--color-main) !important;
+  color: var(--color-2);
+  display: block;
+}
+.ant-list-item-meta-title {
+  color: var(--color-2);
+}
+.ant-list-item-meta {
+  padding-left: 1rem;
+}
+.navLink-active  .ant-list-item-meta-title {
+  color: var(--color-2);
+  border-color: var(--color-white);
+}
+#components-layout-demo-responsive .logo {
+  height: 32px;
+  margin: 16px;
+  background: rgba(255, 255, 255, 0.2);
+}
+.welcome {
+  width: 100%;
+  background-color: var(--color-4);
+  text-align: center;
+  padding: 1rem 0;
+  max-height: 64px;
+}
+.welcome h3{
+  color: var(--color-2);
+}
