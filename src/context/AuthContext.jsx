@@ -1,86 +1,69 @@
 import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import {notification } from 'antd';
+import { getEnvVariables } from '../helpers/getEnvVariables';
 
 const AuthContext = createContext();
 
-const URL = 'http://localhost:3400/api';
+const { VITE_API_URL } = getEnvVariables();
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+    const [user, setUser] = useState([]);
     const [token, setToken] = useState(localStorage.getItem('token'));
-    const [product, setProduct] = useState(JSON.parse(localStorage.getItem('product')));
-    const [role, setRole] = useState([])
+    const [product, setProduct] = useState([]);
+
     const navigation = useNavigate();
-
-    const openNotification = (message, description, type) => {
-        notification[type]({
-          message: message,
-          description: description,
-          placement: 'top'
-        });
-      };
-
-    const login = async( formData ) => {
-        try {
-            const response = await axios.post( URL , formData);
-            const newUser = response.data.user;
-            const newToken = response.data.token;
-            // const role = response.data.user.role;
-            // setRole(role)
-            setUser( newUser )
-            setToken ( newToken )
-            localStorage.setItem('user', JSON.stringify(newUser));
-            localStorage.setItem('token', newToken);
-
-
-            const newProduct = await axios( `${URL}/auth/login`,  {
-                headers: {
-                         Authorization: newToken 
-                        }
-            })
-            setProduct( newProduct )
-            openNotification('Login correcto', 'Inicio de sesión exitoso', 'success')
-
-            navigation('/', { replace: true })
-            
-        } catch (error) {  
-            openNotification('Login incorrecto', 'Asegurese de colocar de manera correcta sus datos', 'error')
-        }
-    }
 
     const register = async(formData) => {
         try {
-            const response = await axios.post( URLREGISTER , formData);
-            openNotification('Registro Correcto', 'Su información ha sido guardada en nuestra base datos', 'success')
+            const response = await axios.post( `${VITE_API_URL}/auth/register` , formData);
+
         } catch (error) {
             console.log(error)
         }
-    }
+    };
+
+    const login = async( formData ) => {
+        try {
+            const response = await axios.post( `${VITE_API_URL}/auth/login`, formData );
+            const newUser = response.data.user;
+            setUser( newUser );
+
+            const newToken = response.data.token;
+            setToken( newToken )
+            localStorage.setItem('token', newToken);
+
+            const newProduct = await axios( `${VITE_API_URL}/products` )
+            const productList = newProduct.data.products;    
+            setProduct(productList);     
+
+
+        } catch (error) {
+            console.log(error)
+            
+        }
+    };
 
     const logout = () => {
         setUser(null);
         setToken(null);
-        localStorage.removeItem('user');
         localStorage.removeItem('token');
         navigation('/login');
-    }
+    };
 
-    
     const auth = {
         user,
         token,
-        product,
+        register,
         login,
-        logout,
-        role,
-        register
+        logout   
     }
 
-    return <AuthContext.Provider value={ auth }> { children } </AuthContext.Provider>
-}
+  return (
+    <AuthContext.Provider value={ auth }>{ children }</AuthContext.Provider>
+  )
+};
 
 export function useAuth() {
     return useContext( AuthContext )
-}
+};

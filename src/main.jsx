@@ -1,14 +1,18 @@
+// require('dotenv').config();
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import 'antd/dist/antd.css';
 import './styles.css';
+import { AuthProvider } from './context/AuthContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter> 
-    <React.StrictMode>
+  <React.StrictMode>
+    <BrowserRouter>
+     <AuthProvider>
       <App />
-    </React.StrictMode>
-  </BrowserRouter>
+     </AuthProvider>
+    </BrowserRouter>
+  </React.StrictMode>
 )
